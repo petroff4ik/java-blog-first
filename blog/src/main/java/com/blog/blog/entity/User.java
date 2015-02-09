@@ -49,10 +49,8 @@ public class User {
 	@Column(name = "profile")
 	private String profile;
 	private String repassword;
-	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	private Set<UserRole> userRole = new HashSet<UserRole>(0);
-
+	private Set<UserRole> userRole;
 
 	public Set<UserRole> getUserRole() {
 		return userRole;
@@ -125,6 +123,11 @@ public class User {
 		this.salt = salt;
 		this.email = email;
 		this.profile = profile;
+	}
+
+	public User(String username, String password) {
+		this.username = username;
+		this.password = password;
 	}
 
 	public User() {

@@ -20,4 +20,6 @@ public interface UserService {
 	User editUser(User u);
 
 	List<User> getAll();
+
+	User getByUserName(String username);
 }

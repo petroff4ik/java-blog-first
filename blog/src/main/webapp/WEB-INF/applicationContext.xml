@@ -13,7 +13,7 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<import resource="spring-security.xml"/>
+	
 	
 	<bean id="propertyConfigurer"
 		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
@@ -28,6 +28,7 @@
 		<property name="username" value="${jdbc.username}"/>
 		<property name="password" value="${jdbc.password}"/>
 	</bean>
+	
  
  
 	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -35,6 +36,8 @@
 		<property name="generateDdl" value="true"/>
 		<property name="database" value="MYSQL"/>
 	</bean>
+	
+	
  
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
@@ -43,8 +46,33 @@
 		<property name="packagesToScan" value="com.blog.blog.entity"/>
 	</bean>
 	<tx:annotation-driven />
+	<bean id="userDetailsService" 
+		  class="com.blog.blog.service.impl.UserDetailsImpl">
+	</bean>
+	<import resource="spring-security.xml"/>
   
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>
+	
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.jpa.vendor.HibernateJpaSessionFactoryBean">
+		<property name="entityManagerFactory" ref="entityManagerFactory"/>
+	</bean>
+	
+
+ 
+	<aop:config>
+		<aop:pointcut id="userServicePointCut"
+					  expression="execution(* com.blog.blog.service.impl.*Service.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="userServicePointCut" />
+		
+	</aop:config>
     
 
 </beans>

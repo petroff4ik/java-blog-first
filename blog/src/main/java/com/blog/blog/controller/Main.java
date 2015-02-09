@@ -4,8 +4,9 @@
  */
 package com.blog.blog.controller;
 
-import com.blog.blog.entity.Employee;
 import com.blog.blog.service.EmployeeService;
+import com.blog.blog.service.UserService;
+import com.blog.blog.service.impl.UserServiceImpl;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,12 +26,8 @@ public class Main {
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public String printHello(ModelMap model, HttpSession session) {
-		Employee e = new Employee();
-		e.setFirstName("andrey");
-		e.setLastName("petroff");
-		e.setDept("sd");
-		employeeService.addEmployee(e);
-		model.addAttribute("message", "Client");
+		UserService us = new UserServiceImpl();
+
 		return "hello";
 	}
 
