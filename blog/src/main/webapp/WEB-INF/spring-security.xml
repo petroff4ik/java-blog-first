@@ -7,15 +7,16 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
  
-	<http auto-config="true">
+	<http auto-config="true" >
 		<intercept-url pattern="/user/edit/**" access="ROLE_USER" />
+		<intercept-url pattern="/user/welcome/**" access="ROLE_USER" />
 		<form-login 
 		    login-page="/login" 
-		    default-target-url="/welcome" 
+		    default-target-url="/user/welcome" 
 			authentication-failure-url="/login?error" 
 			username-parameter="username"
 			password-parameter="password" />
-		<logout logout-success-url="/login?logout" />
+		<logout logout-success-url="/login?logout" delete-cookies="JSESSIONID" />
 		<!-- enable csrf protection -->
 		
 	</http>

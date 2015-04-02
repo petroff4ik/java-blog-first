@@ -12,6 +12,9 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
 	   http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+		  p:location="/WEB-INF/config.properties" />
 	
 	<context:component-scan base-package="com.blog.blog.controller" />
 	<bean id="viewResolver"
@@ -21,7 +24,7 @@
 	<mvc:resources mapping="/resources/**" location="/WEB-INF/web-resources/" />
 	<mvc:annotation-driven />
 	<bean id="messageSource"
-			  class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		  class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basename" value="/WEB-INF/messages"></property>
 		<property name="defaultEncoding" value="UTF-8"></property>
 	</bean>

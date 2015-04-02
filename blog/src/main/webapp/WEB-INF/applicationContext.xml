@@ -42,6 +42,11 @@
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+		<property name="jpaProperties">
+			<props>
+				<prop key="javax.persistence.validation.mode">none</prop>
+			</props>
+		</property>                   
 		<!-- spring based scanning for entity classes-->
 		<property name="packagesToScan" value="com.blog.blog.entity"/>
 	</bean>
@@ -49,6 +54,10 @@
 	<bean id="userDetailsService" 
 		  class="com.blog.blog.service.impl.UserDetailsImpl">
 	</bean>
+	<bean id="userole" 
+		  class="com.blog.blog.entity.UserRole">
+	</bean>
+	<bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
 	<import resource="spring-security.xml"/>
   
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager"/>

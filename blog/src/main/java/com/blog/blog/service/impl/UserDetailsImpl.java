@@ -37,6 +37,7 @@ public class UserDetailsImpl implements UserDetailsService {
                throws UsernameNotFoundException {
  
 		com.blog.blog.entity.User user = userService.getByUserName(username);
+		Set<UserRole> userRoles = user.getUserRole();
 		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
  
 		return buildUserForAuthentication(user, authorities);
