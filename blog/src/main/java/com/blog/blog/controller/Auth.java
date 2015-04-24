@@ -37,7 +37,6 @@ public class Auth {
 		}
 
 		if (logout != null) {
-			//request.logout();
 			String msg = messageSource.getMessage("logout.done", null, locale);
 			model.addObject("msg", msg);
 		}
