@@ -29,6 +29,6 @@ public class Category {
 	public String CategoryM(ModelMap model, HttpSession session) {
 		model.addAttribute("message", "Client");
 
-		return "hello";
+		return "category";
 	}
 }

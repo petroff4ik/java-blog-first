@@ -30,7 +30,7 @@
 			<c:if test="${empty pageContext.request.remoteUser}">
 				<h3>Login with Username and Password</h3>
 				<form name='loginForm'
-					  action="<c:url value='j_spring_security_check' />" method='POST'>
+					  action="<c:url value='/j_spring_security_check' />" method='POST'>
 
 					<table>
 						<tr>

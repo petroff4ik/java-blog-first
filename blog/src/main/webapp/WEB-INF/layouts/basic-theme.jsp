@@ -25,12 +25,12 @@
 					</span>
 					<span style="float: right;">
 						<sec:authorize access="isAuthenticated()">
-							<a href="<c:url value="/j_spring_security_logout"/>">Logout</a>
+							<a href="<c:url value="j_spring_security_logout"/>">Logout</a>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
 
-							<a href="<c:url value="/user/registration"/>">Registration</a>
-							<a href="<c:url value="/login"/>">Login</a>
+							<a href="<c:url value="user/registration"/>">Registration</a>
+							<a href="<c:url value="login"/>">Login</a>
 
 						</sec:authorize>
 					</span>
